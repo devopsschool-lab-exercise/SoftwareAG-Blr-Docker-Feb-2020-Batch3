@@ -307,12 +307,81 @@ ec2-user
 
 Location - https://www.devopsschool.com/notes/docker/2019/
 FILE -  	rajesh-mumbai.ppk
+========================================================================
+PID 1 is Magical.
 
 
+How to consume Containers?
+==================================
+http:
+ssh
+go inside a container
+==================================
+exec 
+	This way, You can execute an executables inside a container.
+	But
+		-it  and /bin/bash - You can go inside it.
+attach
+	It get attached to PID1.
 
 
-
-
+ 141  history
+  142  clear
+  143  clear
+  144  docker run jenkins
+  145  clear
+  146  docker run tomcat
+  147  clear
+  148  docker run -d jenkins
+  149  docker run -d tomcat
+  150  docker ps
+  151  clear
+  152  docker ps
+  153  docker inspect eb464ee847d8 | grep -i ip
+  154  clear
+  155  curl http://172.17.0.2:8080
+  156  clear
+  157  ls
+  158  docker ps -a
+  159  docker stop 1ff551f7e5ac eb464ee847d8
+  160  clear
+  161  docker ps -a
+  162  docker rm 1ff551f7e5ac eb464ee847d8 10806c00f874 51bde859de89
+  163  clear
+  164  docker ps -a
+  165  docker run -d -p 8080:8080 jenkins
+  166  docker ps
+  167  docker run -d -p 8080:8080 jenkins
+  168  docker ps
+  169  docker ps  -a
+  170  clear
+  171  docker ps -a
+  172  docker run -d -p 8090:8080 jenkins
+  173  docker ps
+  174  clear
+  175  docker ps
+  176  dcoker exec 0e9d8f398c91 ls
+  177  docker exec 0e9d8f398c91 ls
+  178  clear
+  179  docker exec 0e9d8f398c91 df -kh
+  180  docker exec 0e9d8f398c91 ddd
+  181  ddd
+  182  clear
+  183  docker ps
+  184  docker exec -it 0e9d8f398c91 /bin/bash
+  185  clear
+  186  ls
+  187  docker ps -a
+  188  docker exec 0e9d8f398c91 ps -eaf
+  189  docker attach 0e9d8f398c91
+  190  docker ps
+  191  clear
+  192  docker run ubuntu
+  193  docker ps
+  194  docker ps -a
+  195  docker run -it ubuntu
+  196  docker ps -a
+  197  history
 
 
 
