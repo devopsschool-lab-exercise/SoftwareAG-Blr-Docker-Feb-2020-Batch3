@@ -1,0 +1,315 @@
+Why we 2 Days - Only for this session?
+======================================
+
+DevOps
+	Immediate Release
+	Reduction of cost
+	Improving a quaity
+
+What is Docker?
+========================
+A PLATFORM
+A Tool
+		To Manage Container
+Free
+Open Source
+Release
+	CE  - We would learn
+	EE	
+
+What is Container?
+	Lightweight 
+	Isolated
+	runtime
+	APP
+	ENV.
+
+	UserSpace
+		With their own
+				Net
+				MNT
+				PRocessMap
+					Powered by Docker
+				Docker Empoered alll these using
+					Kernal NS | CGROUP | Capabilities.
+
+===================================================================================
+Other tools - 
+https://www.devopsschool.com/blog/list-of-top-container-runtime-interface-projects/
+
+
+Architecture of docker?
+=============================================================
+Humen->Docker Client ---REST API---> Docker Deamon(server) ------ContainerD-------->Kernal(Namespace
+
++Cgroups+Cap)
+
+Components in Docker?
+======================================
+1. Docker Engine - A tool / Platform.
+2. Docker Image - 
+		Packaged runtime env for APP.
+		-----------------------------
+		RFS + DEP(JDK) + YOUR APP
+3. Registry -> Repository -> IMAGE.
+	PUBLIC
+		hub.docker.com
+		google res
+		ECR
+
+	PVT
+		Artifactory
+		Nexus
+		Docker Registry
+4. Container.
+		Run time state of the image is called Container.
+
+How to install Docker?
+==========================================
+13.235.134.57
+ec2-user
+
+https://www.devopsschool.com/tutorial/docker/install-config/docker-install-commuityedition-centos-
+
+rhel.html
+
+DOCKER NEED ROOT or A USER NEED TO BE PART OF GROUP CALLED "docker"
+
+  1  clear
+    2  sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+    3  sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+    4  sudo yum install –y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+    5  sudo yum-config-manager --enable rhui-REGION-rhel-server-extras
+    6  sudo yum install -y docker-ce
+    7  sudo yum install -y docker-ce
+    8  history
+    9  docker -v
+   10  sudo systemctl enable docker
+   11  sudo systemctl start docker
+   12  docker info
+   13  clear
+   14  docker
+   15  docker help
+   16  docker version
+   17  clear
+   18  ls
+   19  history
+==================
+  21  clear
+   22  which docker
+   23  ps -eaf | grep docker
+   24  ps -eaf | grep cont
+   25  history
+=====================
+
+PROOF OF CONTAINER ANATOMY
+=============================
+  26  clear
+   27  ls
+   28  ps -eaf
+   29  clear
+   30  ps -eaf | grep docker
+   31  ifconfig
+   32  clear
+   33  ls
+   34  df -kh
+   35  cd /
+   36  clear
+   37  ls
+   38  cd
+   39  ls
+   40  clear
+   41  docker run -itd jenkins
+   42  clear
+   43  docker ps
+   44  w
+   45  who
+   46  ps
+   47  ps -eaf | grep 9663
+   48  ps -eaf | grep 9662
+   49  ps -eaf | grep 9642
+   50  ps -eaf | grep 9641
+   51  ps -eaf | grep 9638
+   52  ps -eaf | grep 1302
+   53  clear
+   54  ls
+   55  ps -eaf | grep docker
+   56  ps -eaf | grep 10720
+   57  clear
+   58  docker run -itd jenkins
+   59  docker ps
+   60  ps -eaf | greo docker
+   61  ps -eaf | grep docker
+   62  clear
+   63  clear
+   64  docker ps
+   65  docker inspect 56715ad3bc40 | grep -i ip
+   66  docker inspect d179c3f1dbec' | grep -i ip
+   67  docker inspect d179c3f1dbec | grep -i ip
+   68  ifconfig
+   69  clear
+   70  docker ps
+   71  docker exec 56715ad3bc40 ifconfig
+   72  docker exec 56715ad3bc40 ipa
+   73  docker exec 56715ad3bc40 ip
+   74  docker exec 56715ad3bc40 ip addr
+   75  docker exec d179c3f1dbec ip addr
+   76  clear
+   77  docker ps
+   78  docker exec 56715ad3bc40 df -kh
+   79  docker exec d179c3f1dbec df -kh
+   80  docker exec 56715ad3bc40 touch /var/jenkins_home/rajesh.txt
+   81  docker exec 56715ad3bc40 ls //var/jenkins_home/
+   82  docker exec d179c3f1dbec ls //var/jenkins_home/
+   83  clear
+   84  ls
+   85  docker ps
+   86  dockcer exec 56715ad3bc40 ps -eaf
+   87  docker exec 56715ad3bc40 ps -eaf
+   88  docker exec d179c3f1dbec ps -eaf
+   89  docker info
+   90  clear
+   91  cd /var/lib/docker
+   92  ls
+   93  docker info
+   94  ls
+   95  clear
+   96  cd /var/lib/docker/overlay2
+   97  ls
+   98  clear
+   99  ls
+  100  ls
+  101  clear
+  102  cd
+  103  ls
+
+
+Workflow of Docker
+======================================
+Human->Docker Client -> Docker Daemon->
+			1. Check Image is there in local repo? - /var/lib/docker/overlay2
+			If not - Download from hub to local repo
+			If yes - Instruct containerd for rest
+
+
+Workflow of Container
+===========================================================================
+Create->Start->Stop->Restart-> Pause->Unpause->Kill->remove.
+
+softwareag
+tomcat
+browswr
+nginx
+sql
+kafka
+apache
+mysql
+mssql
+oracle
+prs
+java
+perl
+python
+nexus
+artiti
+jira
+sonarqube
+jenkins
+github
+
+jenkins
+================================================
+	Dev in JAVA -> JRE
+	WEB `	NODE
+	8080	50000
+
+ 104  docker images
+  105  docker ps
+  106  docker ps -a
+  107  docker pull ubuntu
+  108  clear
+  109  docker images
+  110  docker ps
+  111  clear
+  112  docker ps
+  113  docker stop 56715ad3bc40 d179c3f1dbec
+  114  clear
+  115  ls
+  116  docker ps
+  117  docker ps -a
+  118  docker rm 56715ad3bc40 d179c3f1dbec
+  119  clear
+  120  docker ps -a
+  121  docke create jenkins
+  122  docker create jenkins
+  123  docker ps -a
+  124  docker start 7321fedc379b
+  125  docker ps -
+  126  docker ps -a
+  127  clear
+  128  docker stop 7321fedc379b
+  129  docker ps -a
+  130  docker restart 7321fedc379b
+  131  docker ps -a
+  132  docker pause 7321fedc379b
+  133  docker ps -a
+  134  clear
+  135  docker unpause 7321fedc379b
+  136  docker ps -a
+  137  docker kill 7321fedc379b
+  138  docker ps -a
+  139  docker rm 7321fedc379b
+  140  docker ps -a
+  141  history
+
+
+Workflow of Container - REVISED
+===========================================================================
+Create->Start->Stop->Restart-> Pause->Unpause->Kill->remove.
+
+Create
+===============
+pull + create
+
+run
+================
+pull + create + start + (BECOME AKA ATTACH)
+
+run -d
+================
+pull + create + start + (DOT NOT BECOME AKA DE ATTACH)
+======================================
+
+1	13.127.112.4
+2	15.206.81.68
+3	13.235.0.158
+4	13.127.39.220
+5	13.234.231.61
+6	13.126.72.168
+7	13.232.228.165
+8	13.233.207.55
+9	52.66.154.250
+10	13.232.183.13
+11	13.233.143.59
+12	13.126.138.221
+13	13.127.215.157
+14	15.206.125.158
+15	13.232.153.246
+16	13.233.179.86
+
+ec2-user
+
+Location - https://www.devopsschool.com/notes/docker/2019/
+FILE -  	rajesh-mumbai.ppk
+
+
+
+
+
+
+
+
+
+
+
+
