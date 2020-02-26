@@ -382,6 +382,90 @@ attach
   195  docker run -it ubuntu
   196  docker ps -a
   197  history
+=========================================================
+https://www.devopsschool.com/tutorial/docker/commands/index.html
+
+  212  touch devopsschool.txt
+  213  ls
+  214  docker cp devopsschool.txt 5ea619331cd5:/opt
+  215  rm -rf devopsschool.txt
+  216  clear
+  217  ls
+  218  docker ps
+  219  docker exec 5ea619331cd5 ls /opt
+  220  docker cp 5ea619331cd5:/opt/devopsschool.txt .
+  221  s
+  222  ls
+  223  history
+
+diff
+  223  history
+  224  clear
+  225  docker ps
+  226  docker attach 5ea619331cd5
+  227  clear
+  228  docker ps
+  229  docker diff 5ea619331cd5
+  230  history
+port
+234  clear
+  235  docker ps
+  236  docker port 5ea619331cd5
+  237  docker por 7a12a4db9344
+  238  docker port 7a12a4db9344
+  239  history
+
+
+EXCERCISE
+update	Update configuration of one or more containers
+wait	Block until one or more containers stop, then print their exit codes
+
+
+ 240  clear
+  241  ls
+  242  docker ps
+  243  docker run -itd --name dev1 ubuntu
+  244  docker ps
+  245  clear
+  246  docker ps -a
+  247  clear
+  248  docker ps
+  249  docker rename 5ea619331cd5 dev2
+  250  docker ps
+  251  clear
+  252  docker ps
+  253  docker logs 9d18c612ba30
+  254  docker logs 7a12a4db9344
+  255  clear
+  256  ls
+  257  docker ps
+  258  docker stats
+  259  docker stats 9d18c612ba30
+  260  docker ps
+  261  ps -eaf | grep docker
+  262  clear
+  263  docker top
+  264  dockerps
+  265  docker ps
+  266  docker top 9d18c612ba30
+  267  docker top
+  268  docker top 5ea619331cd5
+  269  clear
+  270  docker events
+  271  history
+
+
+EXCERCISE 1 - DO ALL ABOVE COMMANDS
+
+EXCERCISE 2 - TEACH ME
+update	Update configuration of one or more containers
+wait	Block until one or more containers stop, then print their exit codes
+
+EXCERCISE 3- HELP ME UNDERSTAND
+https://www.devopsschool.com/tutorial/docker/labs/docker/docker-lab-6-link.html
+
+
+
 
 
 
