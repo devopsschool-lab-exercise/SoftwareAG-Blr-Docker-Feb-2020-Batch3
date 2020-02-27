@@ -1,0 +1,284 @@
+3.6.91.171
+======================
+
+Docker Image is collections of Layer.	- DONE
+Each layer is file system		- DONE
+Bottom layer is rootfs			- DONE
+any other layer on top of is incremental layer (have added+changed+deleted) - DONE
+union mounts merge these layers and attached to USER	- DONE
+merged layer is RW		- DONE
+image layer is RO		- DONE
+In case of conflict  - Higher layer wins.	
+==============================================
+
+[root@ip-172-31-20-119 docker]# ls -1
+builder
+buildkit
+containers		# Container META
+image			# Image Db and LayerDb AKA META
+network			# this is for Docker network
+overlay2		# This would contains layers - FILESYSTEM 
+plugins
+runtimes
+swarm
+tmp
+trust
+volumes			# this is for Docker volume
+
+    1  clear
+    2  ifconfig
+    3  clear
+    4  ls
+    5  sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+    6  sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+    7  sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+    8   sudo yum-config-manager --enable rhui-REGION-rhel-server-extras
+    9  sudo yum install -y docker-ce
+   10  sudo systemctl enable docker
+   11  ifconfig
+   12  sudo systemctl start docker
+   13  ifconfig
+   14  clear
+   15  ls
+   16  clear
+   17  docker info
+   18  clear
+   19  cd /var/lib/docker
+   20  ls -1
+   21  clear
+   22  ls
+   23  cd overlay2
+   24  ls
+   25  du -sh
+   26  cd ../containers/
+   27  du -sh
+   28  cd ../image/
+   29  du -sh
+   30  ls
+   31  clear
+   32  cd ../overlay2/
+   33  docker pull ubuntu
+   34  ls
+   35  du -s --max-depth=1
+   36  du -h --max-depth=1
+   37  clear
+   38  ls
+   39  du -h --max-depth=1
+   40  cd ./897f23aac380d5982038999d886c0f866b964cebdb02e4d4d744c23fee49895a
+   41  ls
+   42  clear
+   43  ls
+   44  cd diff/
+   45  ls
+   46  cd ..
+   47  ls
+   48  cd ..
+   49  ls
+   50  du -h --max-depth=1
+   51  cd ./bc525262872070dae2ccc8b09180584808c61ed6e238768fab1df5e4745c9bc3
+   52  ls
+   53  clear
+   54  ls
+   55  cd diff/
+   56  ls
+   57  cd var/
+   58  ls
+   59  cd cd ..
+   60  ls
+   61  cd ..
+   62  ls
+   63  cd ..
+   64  ls
+   65  cd work/
+   66  ls
+   67  clear
+   68  ls
+   69  cd ..
+   70  ls
+   71  cd ..
+   72  ls
+   73  clear
+   74  ls
+   75  cd ../containers/
+   76  ls
+   77  cd ../image/
+   78  ls
+   79  tree
+   80  yum install tree -y
+   81  clear
+   82  tree
+   83  du -sh
+   84  docker images
+   85  docker inspect ubuntu
+   86  clear
+   87  ls
+   88  cd ../overlay2/
+   89  ls
+   90  clear
+   91  ls
+   92  docker run -itd ubuntu
+   93  ls
+   94  df -kh
+   95  clear
+   96  ls
+   97  cd 890de89b7980952e8bb7892589a65771bb15227630d1f6a8ff43b9c682e0ebbe
+   98  ls
+   99  cd merged/
+  100  ls
+  101  cd ..
+  102  ls
+  103  cd diff/
+  104  ls
+  105  clear
+  106  ls
+  107  cd ..
+  108  ls
+  109  cd work/
+  110  ls
+  111  cd work/
+  112  ls
+  113  cd ..
+  114  ls
+  115  cd ..
+  116  clear
+  117  pwd
+  118  ls
+  119  cd ..
+  120  ls
+  121  cd ..
+  122  pwd
+  123  clear
+  124  watch find . -name rajesh.txt
+  125  docker ps
+  126  docker diff 25b110636b57
+  127  df -kh
+  128  cd 
+
+/var/lib/docker/overlay2/890de89b7980952e8bb7892589a65771bb15227630d1f6a8ff43b9c682e0ebbe/merged
+  129  clear
+  130  ls
+  131  cd etc/
+  132  ls
+  133  more issue
+  134  cd ..
+  135  ls
+  136  cd ..
+  137  clear
+  138  ls
+  139  cd diff/
+  140  ls
+  141  cd root/
+  142  ls
+  143  cd ..
+  144  ls
+  145  cd opt/
+  146  ls
+  147  cd ..
+  148  ls
+  149  clear
+  150  cd etc/
+  151  ls
+  152  more issue
+  153  clar
+  154  clear
+  155  docker images
+  156  docker history ubuntu
+  157  history
+  1  cd /opt/
+    2  ls
+    3  touch rajesh.txt
+    4  exit
+    5  clear
+    6  ls
+    7  cd etc/
+    8  ls
+    9  rm -rf legal
+   10  clear
+   11  ls
+   12  cat >> issue
+   13  more issue
+   14  history
+
+
+
+
+=======================================
+How to create images?
+======================================================
+Lazy way - Using Existing Container
+===========================================
+docker commit -m"ub-git" -a"Rajeshkumar" 25b110636b57 ub-git
+
+  7  docker start 25b110636b57
+    8  df -kh
+    9  clear
+   10  docker ps
+   11  docker attach 25b110636b57
+   12  docker ps
+   13  docker ps -a
+   14  docker ps
+   15  docker start 25b110636b57
+   16  clear
+   17  docker attach 25b110636b57
+
+apt-get update
+apt-get insatll git
+
+   18  docker ps -a
+   19  docker start 25b110636b57
+   20  docker exec 25b110636b57 git
+   21  clear
+   22  git
+   23  docker ps
+   24  clear
+   25  docker images
+   26  docker commit -m"ub-git" -a"Rajeshkumar" 25b110636b57 ub-git
+   27  docker images
+   28  cd /var/lib/docker
+   29  ls
+   30  cd overlay2/
+   31  ls
+   32  clear
+   33  ls
+   34  docker ps -a
+   35  docker stop 25b110636b57
+   36  docker rm 25b110636b57
+   37  clear
+   38  ls
+   39  du -h --max-depth=1
+   40  cd ./a66cf45c75cc2f5cbb72c355bdfe1b76bd2224646b7b3feb4a87410ea1aee6e3
+   41  clear
+   42  ls
+   43  cd diff/
+   44  ls
+   45  tree
+   46  clear
+   47  docker images
+   48  docker history ubuntu
+   49  docker history ub-git
+   50  history
+
+Automated Way  - Using Dockerfile
+
+
+TASKS
+===========================================
+jenkins
+===========================
+IP - 3.6.91.171
+ec2-user
+
+Jenkins Container is running with - WHICH USER?
+Jenkins Container is running with - WHICH PORT?
+Jenkins Container is running with - WHICH EXTRA VOL?
+Jenkins Container is running with - WHICH ENV?
+
+
+
+
+
+
+
+
+
+ 
