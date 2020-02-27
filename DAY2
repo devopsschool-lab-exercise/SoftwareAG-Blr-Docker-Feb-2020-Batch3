@@ -273,6 +273,187 @@ Jenkins Container is running with - WHICH PORT?
 Jenkins Container is running with - WHICH EXTRA VOL?
 Jenkins Container is running with - WHICH ENV?
 
+Jenkins
+	openjdk:8-jdk
+		buildpack-deps:buster-scm
+			buildpack-deps:buster-curl
+				debian:buster
+					scratch
+
+====================================================
+Understanding a Dockerfile
+- Each line is creating one LAYEr (DATA + META)
+- Next line layer parent is previous line layer
+- Each Layer would be created From the BASE image.
+=============================================================
+FROM
+MAINTAINER
+RUN
+COPY
+USER
+EXPOSE
+VOLUME
+ENV
+ARG
+
+CMD
+ENTRYPOINT
+============================================
+FROM ubuntu
+MAINTAINER Rajeshkumar DevOps@Rajeshkumar.xyz
+COPY original-ks.cfg /opt
+RUN touch /opt/rajesh1.txt
+RUN touch /opt/rajesh2.txt
+RUN touch /opt/rajesh3.txt
+
+docker build -t img1 .
+
+  66  clear
+   67  ls
+   68  docker imatges
+   69  docker images
+   70  ls
+   71  c
+   72  clear
+   73  ls
+   74  vi dockerfile
+   75  docker build -t img1 .
+   76  cd /var/lib/docker
+   77  find . -name rajesh*
+   78  find . -name original-ks.cfg
+   79  clear
+
+
+FROM ubuntu
+MAINTAINER Rajeshkumar DevOps@Rajeshkumar.xyz
+RUN apt-get udpate && apt-get insatll git -y && apt-get insatll apache2
+
+163  vi doc1
+  164  docker build -f doc1 -t img2 .
+  165  vi doc1
+  166  docker build -f doc1 -t img2 .
+  167  vi doc1
+  168  docker build -f doc1 -t img2 .
+  169  vi doc1
+  170  docker build -f doc1 -t img2 .
+  171  docker images
+  172  history
+
+======================================================
+How to share Imges?
+==============================================
+- Tar ball
+
+ 90  docker images
+   91  docker save -o img2.tar img2
+   92  ls
+   93  docker ps -a
+   94  docker rm 02bd63138961 e2c0c35a6240 768a4634625c
+   95  clear
+   96  docker ps pa-
+   97  docker ps -a
+   98  clear
+   99  docker images
+  100  docker rmi img2 img1 ubuntu
+  101  clear
+  102  docker images
+  103  ls
+  104  docker load -i img2.tar
+  105  docker images
+  106  history
+
+
+- Public registry such as hub.docker.com
+  105  docker images
+  106  history
+  107  clear
+  108  ls
+  109  docker images
+  110  docker login
+  111  docker login
+  112  clear
+  113  ls
+  114  docker images
+  115  docker push img2
+  116  docker images
+  117  docker tag img2 scmgalaxy/lastdocsag
+  118  docker images
+  119  docker push scmgalaxy/lastdocsag
+  120  history
+
+
+- Pvt Registry such as Artifactory
+
+How to set PID 1???
+
+Method to execute...
+1. EXEC WAY
+/bin/echo rajesh kumar
+/bin/python my.py
+
+2. SHELL WAY
+echo rajesh
+python my.py
+
+==============================================
+CMD vs ENTRYPOINT
+=============================================
+CMD 
+	CMD can be REPLACED during run time.
+
+ENTRYPOINT
+	ENTRYPOINT can not be replaced during run time.
+	CMD passed to the image ...Add as a parameter to ENTRYPOINT
+
+	
+
+  "Entrypoint": [
+                "/bin/tini",
+                "--",
+                "/usr/local/bin/jenkins.sh"
+            ],
+
+/bin/tini -- /usr/local/bin/jenkins.sh
+
+  "Entrypoint": [
+                "/bin/tini",
+                "--",
+                "/usr/local/bin/jenkins.sh"
+            ],
+],
+            "Cmd": [
+                "ls"'
+
+ /bin/tini -- /usr/local/bin/jenkins.sh ls
+
+
+================================================================
+Task 1 - Validate and Understand a Anatomy of Image.
+- Docker Image is collections of Layer.	- DONE
+- Each layer is file system		- DONE
+- Bottom layer is rootfs			- DONE
+- any other layer on top of is incremental layer (have added+changed+deleted) - DONE
+- union mounts merge these layers and attached to USER	- DONE
+- merged layer is RW		- DONE
+- image layer is RO		- DONE
+- In case of conflict  - Higher layer wins.
+
+Task 2 - Create a image using container with GIT + Apache 2
+
+Task 3 - register at hub.docker.com and Push this image
+
+Task 4 - Create a TAR ball of the image.
+
+Task 5 - Write a Dockerfile which has Base - ubuntu && App -- Apache2 in running && copy index.html 
+
+into /var/www/html/ and content of index.html must be "Welcome to Docker" My Name is RAAA" && expose 
+
+at 80 port of your HOST MACHINE.
+
+Task 6 - Create a 5 Images following..
+https://www.devopsschool.com/tutorial/docker/dockerfile/dockerfile-example-sample-lab.html
+and use it.
+
 
 
 
