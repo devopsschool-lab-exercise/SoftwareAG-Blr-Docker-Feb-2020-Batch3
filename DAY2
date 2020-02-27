@@ -456,22 +456,22 @@ and use it.
 
 
 1 35.154.36.234
-2 52.66.206.49
-3 15.206.146.3
-4 13.232.81.60
-5 15.206.27.7
+2 52.66.206.49		DONE
+3 15.206.146.3		
+4 13.232.81.60		DONE
+5 15.206.27.7		DONE
 6 13.232.209.98
-7 13.234.213.41
-8 13.235.104.211
+7 13.234.213.41		DONE
+8 13.235.104.211	DONE
 9 35.154.93.98
-10 52.66.91.125
+10 52.66.91.125		DONE
 11 13.127.97.224
 12 35.154.4.55
 13 13.235.133.220
 14 13.233.173.55
 15 13.127.178.16
 16 3.6.36.154
-17 13.232.167.127
+17 13.232.167.127	DONE
 
 18 15.206.173.234
 19 13.235.115.176
@@ -479,6 +479,242 @@ and use it.
 
 
 https://www.devopsschool.com/blog/restore-a-default-rhel-7-x-default-repo-list/
+=================================================================
+Volume
+===============
+Prb - How to have data persitency?
+
+Docker Volume
+https://www.devopsschool.com/blog/understand-docker-volume-from-beginner-to-deep-dive-level/
+
+- volume ----
+- mount
+- tmpfs
+
+
+Container networking
+============================
+Bridge 
+	
+HOST
+NONE
+
+
+
+
+
+
+
+ 405  docker ps -a
+  406  docker ps -a
+  407  docker stop 04abb2d00a50
+  408  docker rm 04abb2d00a50
+  409  clear
+  410  cd /var/lib/docker
+  411  ls
+  412  cd volumes
+  413  ls
+  414  cd 4a2b51a70705f458251f23f0bcbac7ca70a24101c207613f92384e3efde2a3bb
+  415  clear
+  416  ks
+  417  ls
+  418  cd _data/
+  419  ls
+  420  cd ..
+  421  ls
+  422  cd ..
+  423  ls
+  424  cd 187e287b99a66f37c4311a47bd5c0b5be37d3753ed5e3f0dd9c877f7d2eb5096
+  425  ls
+  426  cd _data/
+  427  ls
+  428  clear
+  429  ls
+  430  cd ..
+  431  ls
+  432  clear
+  433  cd ..
+  434  ls
+  435  docker volume
+  436  docker volume ls
+  437  docker volume purne
+  438  docker volume prune
+  439  docker volume ls
+  440  ls
+  441  docker volume create dev
+  442  ls
+  443  docker run -itd -v dev:/opt/raju ubuntu
+  444  docker attach a00a655fb19b1ce0957bbbb16c2737dc3e14b0093b2233dda65d62de35c1ff7b
+  445  ls
+  446  cd dev/
+  447  ls
+  448  cd _data/
+  449  ls
+  450  touch ddd
+  451  ls
+  452  docker attach a00a655fb19b1ce0957bbbb16c2737dc3e14b0093b2233dda65d62de35c1ff7b
+  453  ls
+  454  docker ps -a
+  455  docker rm  a00a655fb19b
+  456  ls
+  457  clear
+  458  cd /opt/
+  459  ls
+  460  mkdir bkp
+  461  ls
+  462  cd bkp/
+  463  ls
+  464  pwd
+  465  docker run -it -v /opt/bkp:/opt/imp ubuntu
+  466  ls
+  467  pwd
+  468  clear
+  469  cd
+  470  ls
+  471  docker ps -a
+  472  docker stop 5abe9d584470
+  473  clear
+  474  docker ps -a
+  475  docker rm 5abe9d584470
+  476  clea
+  477  clear
+  478  docker ps -a
+  479  ifconfig
+  480  clear
+  481  docker network
+  482  docker network ls
+  483  clear
+  484  docker network ls
+  485  docker network inspect 6c661f5b85d5
+  486  clear
+  487  docker run -itd ubuntu
+  488  docker ps
+  489  docker inspect 76a40c0776e5
+  490  docker network
+  491  docker network create dev --driver=bridge
+  492  docker network ls
+  493  docker network inspect dev
+  494  docker run -itd --net=dev ubuntu
+  495  docker ps
+  496  docker inspect d158f48da498
+  497  clear
+  498  docker network ls
+  499  docker network
+  500  docker ps
+  501  docker network connect dev 76a40c0776e5
+  502  docker inspect 76a40c0776e5
+  503  docker network
+  504  history
+
+https://www.devopsschool.com/notes/docker/commands-collections/docker-networking.txt
+
+===================================================================================
+DOCKER COMPOSE
+=================================
+
+
+version: '2'
+services:
+  wordpress:
+    image: wordpress:latest # https://hub.docker.com/_/wordpress/
+    ports:
+      - 127.0.0.1:80:80 # change ip if required
+    volumes:
+      - ./wp-app:/var/www/html # Full wordpress project
+      #- ./plugin-name/trunk/:/var/www/html/wp-content/plugins/plugin-name # Plugin development
+      #- ./theme-name/trunk/:/var/www/html/wp-content/themes/theme-name # Theme development
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_USER: root
+      WORDPRESS_DB_PASSWORD: password
+    depends_on:
+      - db
+    networks:
+      - wordpress-network
+  db:
+    image: mysql:latest # https://hub.docker.com/_/mysql/ - or mariadb 
+
+https://hub.docker.com/_/mariadb
+    ports:
+      - 127.0.0.1:3306:3306 # change ip if required
+    volumes:
+      - ./wp-data:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_DATABASE: wordpress
+      MYSQL_ROOT_PASSWORD: password
+    networks:
+      - wordpress-network
+networks:
+  wordpress-network:
+      driver: bridge
+
+====================================================
+http://bit.ly/2T1Z40M
+
+=======================================
+TUTORIALS
+https://www.devopsschool.com/tutorial/
+
+HTML SLIDES
+https://www.devopsschool.com/slides/
+
+PDF
+https://www.devopsschool.com/pdf/
+
+Example programs
+https://github.com/devops-school
+https://github.com/orgs/devopsschool-classroom/dashboard
+https://github.com/orgs/devopsschool-lab-exercise/dashboard
+https://github.com/orgs/devopsschool-projects/dashboard
+https://github.com/orgs/devopsschool-sample-projects/dashboard
+
+Blogs
+https://www.devopsschool.com/blog/
+
+QUIZ
+https://www.devopsschool.com/lms/
+
+Videos
+https://www.youtube.com/channel/UCrXr49kBvXJeQMMl2693c4g
+https://www.devopsschool.com/videos/
+
+QA
+https://www.devopsschool.com/interview/
+
+COMMAND
+==========
+https://www.devopsschool.com/commands
+
+https://www.devopsschool.com/blog/how-to-update-certificates-in-linkedin-under-licenses-
+
+certifications/
+
+Feedback
+=============
+Public 
+
+Private
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
